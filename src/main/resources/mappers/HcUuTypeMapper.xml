@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hctech2006.hcuufile.mapper.HcUuTypeMapper">
+
+  <resultMap id="typeMap" type="cn.hctech2006.hcuufile.bean.HcUuType">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="type_namezh" jdbcType="VARCHAR" property="typeNamezh" />
+    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_time" jdbcType="DATE" property="updateTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="type_enable" jdbcType="CHAR" property="typeEnable" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from hc_uu_type
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.hctech2006.hcuufile.bean.HcUuType">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into hc_uu_type (id, type_namezh, type_name, 
+      create_time, create_by, update_time, 
+      update_by, type_enable)
+    values (#{id,jdbcType=BIGINT}, #{typeNamezh,jdbcType=VARCHAR}, #{typeName,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=DATE}, 
+      #{updateBy,jdbcType=VARCHAR}, #{typeEnable,jdbcType=CHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.hctech2006.hcuufile.bean.HcUuType">
+    update hc_uu_type
+    set type_namezh = #{typeNamezh,jdbcType=VARCHAR},
+      type_name = #{typeName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=DATE},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      type_enable = #{typeEnable,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="typeMap">
+    select id, type_namezh, type_name, create_time, create_by, update_time, update_by, 
+    type_enable
+    from hc_uu_type
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="typeMap">
+    select id, type_namezh, type_name, create_time, create_by, update_time, update_by, 
+    type_enable
+    from hc_uu_type
+  </select>
+  <select id="selectByName" parameterType="String" resultMap="typeMap">
+    select id, type_namezh, type_name, create_time, create_by, update_time, update_by,
+           type_enable
+    from hc_uu_type
+    where type_name = #{name}
+  </select>
+</mapper>

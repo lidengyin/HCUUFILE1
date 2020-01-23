@@ -5,7 +5,7 @@ pipeline{
             steps{
                 
                 
-                sh 'java -jar /var/lib/jenkins/workspace/Pipeline_HCUUFILE_47/target/hcuufile-0.0.1-SNAPSHOT.jar &'
+                sh 'java -jar hcuufile-0.0.1-SNAPSHOT.jar &'
               
             }
          

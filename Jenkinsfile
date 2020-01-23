@@ -4,7 +4,7 @@ pipeline{
         stage('Build'){
             steps{
                 script{
-                    #!/bin/bash -ilex
+                    !/bin/bash -ilex
                 }
                 sh 'mvn clean package spring-boot:repackage'
                 sh 'printenv' 

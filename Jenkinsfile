@@ -7,7 +7,7 @@ pipeline{
                 
                 
                 sh 'java -jar hcuufile-0.0.1-SNAPSHOT.jar &'
-                sh 'printenv'
+              
             }
          
         }
